@@ -8,6 +8,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ProgressBar;
 import android.widget.QuickContactBadge;
 import android.widget.Toast;
 
@@ -22,13 +23,15 @@ public class LoginActivity extends AppCompatActivity {
 
     EditText phoneNumber,password;
     Button login;
+
+    ProgressBar progressBar;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setTheme(R.style.MyTheme);
         setContentView(R.layout.activity_login);
 
-
+        progressBar = findViewById(R.id.progress_login);
 
         phoneNumber = (EditText)findViewById(R.id.phoneNumbr);
         password = (EditText)findViewById(R.id.password);
@@ -36,6 +39,7 @@ public class LoginActivity extends AppCompatActivity {
         login.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                progressBar.setVisibility(View.VISIBLE);
                 String phoneNumberStr = phoneNumber.getText().toString();
                 String passwordStr = password.getText().toString();
                 if(phoneNumberStr.equals("")||phoneNumberStr==null
@@ -54,6 +58,7 @@ public class LoginActivity extends AppCompatActivity {
                                     if(status==200)
                                     {
                                        // finish();
+                                        progressBar.setVisibility(View.INVISIBLE);
                                         Intent i = new Intent(LoginActivity.this,HomeActivity.class);
                                         startActivity(i);
                                         SharedPreferences prefs = getSharedPreferences(
