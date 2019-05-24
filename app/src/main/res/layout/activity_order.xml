@@ -196,7 +196,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="15dp"
                 android:fontFamily="@font/cairo_semibold"
-                android:text="السهر قبل الخصم"
+                android:text="السعر قبل الخصم"
                 android:textColor="@color/colorPrimaryDark"
                 android:textSize="22sp"
                 app:layout_constraintEnd_toEndOf="parent"
