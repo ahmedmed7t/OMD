@@ -28,6 +28,7 @@ public class OrderDetailsActivity extends AppCompatActivity {
     TextView cost , finalCost ;
     RecyclerView recyclerView;
     ProgressBar progressBar;
+    boolean from;
 
     String id;
     @Override
@@ -46,6 +47,7 @@ public class OrderDetailsActivity extends AppCompatActivity {
         recyclerView = findViewById(R.id.details_item_recycler);
 
         Intent i = getIntent();
+        from = i.getBooleanExtra("from",false);
         if (i.hasExtra("clientID"))
         {
             id = i.getStringExtra("clientID");
@@ -101,6 +103,7 @@ public class OrderDetailsActivity extends AppCompatActivity {
     public void onBackPressed() {
         super.onBackPressed();
         Intent intent = new Intent(this,getOrdersActivity.class);
+        intent.putExtra("from",from);
         intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
         startActivity(intent);
         finish();

@@ -34,6 +34,7 @@ public class getOrdersActivity extends AppCompatActivity {
 
     ImageView error_image;
     TextView error_text;
+    boolean flag = false;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -54,8 +55,13 @@ public class getOrdersActivity extends AppCompatActivity {
         RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(getApplicationContext());
         recyclerView.setLayoutManager(layoutManager);
 
+        if(intent.hasExtra("from")){
+            flag = intent.getBooleanExtra("from",false);
+        }
+
         if(intent.hasExtra("client_id")){
             initClient(intent.getIntExtra("client_id",-1));
+            flag = true;
         }else{
             init();
         }
@@ -74,7 +80,7 @@ public class getOrdersActivity extends AppCompatActivity {
 
                     getOrdersAdapter adapter = new getOrdersAdapter(
                             getOrdersActivity.this,
-                            mRespose.getAllBilles());
+                            mRespose.getAllBilles(),flag);
                     if(mRespose.getAllBilles().size() == 0 ){
                         error_image.setVisibility(View.VISIBLE);
                         error_text.setVisibility(View.VISIBLE);
@@ -109,7 +115,7 @@ public class getOrdersActivity extends AppCompatActivity {
 
                         getOrdersAdapter adapter = new getOrdersAdapter(
                                 getOrdersActivity.this,
-                                myArray);
+                                myArray,flag);
                         if(myArray.size() == 0 ){
                             error_image.setVisibility(View.VISIBLE);
                             error_text.setVisibility(View.VISIBLE);
@@ -129,7 +135,13 @@ public class getOrdersActivity extends AppCompatActivity {
     @Override
     public void onBackPressed() {
         super.onBackPressed();
-        Intent i =new Intent(this,CustomersActivity.class);
+        Intent i ;
+        if(flag){
+            i = new Intent(this,CustomersActivity.class);
+        }else {
+            i = new Intent(this,HomeActivity.class);
+        }
+
         i.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
         startActivity(i);
         finish();

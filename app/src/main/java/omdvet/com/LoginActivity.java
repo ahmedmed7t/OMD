@@ -47,6 +47,7 @@ public class LoginActivity extends AppCompatActivity {
                 {
 
                     Toast.makeText(LoginActivity.this, "قم بملئ جميع البيانات", Toast.LENGTH_SHORT).show();
+                    progressBar.setVisibility(View.INVISIBLE);
                 }
                 else
                 {
@@ -74,6 +75,9 @@ public class LoginActivity extends AppCompatActivity {
                                         prefs.edit().putString("ADDRESS",response.body().getEmp().Address).apply();
                                         prefs.edit().putString("ID",response.body().getEmp().id).apply();
                                         prefs.edit().putString("login","logged").apply();
+                                    }else{
+                                        Toast.makeText(LoginActivity.this, "رقم الهاتف او الرقم السرى خاطئ", Toast.LENGTH_SHORT).show();
+                                        progressBar.setVisibility(View.INVISIBLE);
                                     }
                                 }
 

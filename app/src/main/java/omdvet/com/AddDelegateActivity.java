@@ -47,6 +47,7 @@ Button save,cancel;
                 id.setText("");
                 id.setText("");
                 address.setText("");
+                onBackPressed();
             }
         });
 
@@ -71,10 +72,13 @@ Button save,cancel;
                         ||addressStr.equals("")||addressStr==null)
                 {
                     Toast.makeText(AddDelegateActivity.this, "قم بملئ جميع البيانات", Toast.LENGTH_SHORT).show();
+                    progressBar.setVisibility(View.INVISIBLE);
                 }
 
-                else if(!passStr.equals(confirmStr))
+                else if(!passStr.equals(confirmStr)) {
                     Toast.makeText(AddDelegateActivity.this, "كلمة المرور غير متطابقة", Toast.LENGTH_SHORT).show();
+                    progressBar.setVisibility(View.INVISIBLE);
+                }
 
                 else
                 {

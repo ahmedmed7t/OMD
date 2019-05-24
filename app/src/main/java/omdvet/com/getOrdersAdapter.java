@@ -29,12 +29,14 @@ import retrofit2.Response;
 public class getOrdersAdapter extends RecyclerView.Adapter<getOrdersAdapter.ViewHolder> {
 
     private ArrayList<AllBilles> allBilles;
+    private boolean from ;
 
     Context context;
     private int is_report;
 
-    public getOrdersAdapter(Context context, ArrayList allBilles) {
+    public getOrdersAdapter(Context context, ArrayList allBilles,boolean from) {
         this.allBilles = allBilles;
+        this.from = from ;
         this.context=context;
     }
 
@@ -77,12 +79,15 @@ public class getOrdersAdapter extends RecyclerView.Adapter<getOrdersAdapter.View
         holder.mConstraintLayout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+
                 Intent intent = new Intent(context, OrderDetailsActivity.class);
                 intent.putExtra("clientID", allBilles.get(position).getClient_id());
                 intent.putExtra("BillID", allBilles.get(position).getId());
+                intent.putExtra("from",from);
                 intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
                 context.startActivity(intent);
                 ((Activity)context).finish();
+
             }
         });
 

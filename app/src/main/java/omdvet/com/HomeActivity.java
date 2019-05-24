@@ -151,7 +151,7 @@ public class HomeActivity extends AppCompatActivity {
                 intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
                 startActivity(intent);
                 finish();
-                Toast.makeText(this, "logout", Toast.LENGTH_SHORT).show();
+
                 break;
             case R.id.addProduct:
                 Intent i = new Intent(HomeActivity.this,AddProductActivity.class);

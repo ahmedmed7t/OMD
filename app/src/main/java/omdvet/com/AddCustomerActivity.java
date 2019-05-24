@@ -47,6 +47,7 @@ public class AddCustomerActivity extends AppCompatActivity {
                         ||addressStr.equals("")||addressStr==null)
                 {
                     Toast.makeText(AddCustomerActivity.this, "قم بملئ جميع البيانات", Toast.LENGTH_SHORT).show();
+                    progressBar.setVisibility(View.INVISIBLE);
                 }
                 else
                     {

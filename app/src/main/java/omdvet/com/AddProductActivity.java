@@ -1,15 +1,12 @@
 package omdvet.com;
 
-import android.Manifest;
 import android.content.Intent;
-import android.content.pm.PackageManager;
 import android.database.Cursor;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.net.Uri;
 import android.os.Build;
 import android.provider.MediaStore;
-import android.support.v4.app.ActivityCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -26,7 +23,6 @@ import java.io.InputStream;
 import okhttp3.MediaType;
 import okhttp3.MultipartBody;
 import okhttp3.RequestBody;
-import omdvet.com.WebServices.Requests.addProductRequest;
 import omdvet.com.WebServices.Responses.addProductResponse;
 import omdvet.com.WebServices.RetrofitWebService;
 import retrofit2.Call;
@@ -48,29 +44,35 @@ public class AddProductActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setTheme(R.style.MyTheme);
         setContentView(R.layout.activity_add_product);
+
         productName=(EditText)findViewById(R.id.productName);
         productSalary=(EditText)findViewById(R.id.productPrice);
         productQnt=(EditText)findViewById(R.id.productQnt);
         productImg=(ImageView)findViewById(R.id.productImg);
         progressBar = findViewById(R.id.progress_prod);
+
         productImg.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
               openGallery();
             }
         });
+
         save=(Button)findViewById(R.id.save);
+
         save.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 progressBar.setVisibility(View.VISIBLE);
                 String nameStr=productName.getText().toString();
-               String priceStr= productSalary.getText().toString();
+                String priceStr= productSalary.getText().toString();
                 String QntStr=productQnt.getText().toString();
-                if(nameStr.equals("")||nameStr==null
+
+                if(realImgPath==null||nameStr.equals("")||nameStr==null
                         ||priceStr.equals("")||priceStr==null
                         ||QntStr.equals("")||QntStr==null
-                        ||realImgPath.equals("")||realImgPath==null) {
+                        || realImgPath.equals("") ) {
+
                     progressBar.setVisibility(View.INVISIBLE);
                     Toast.makeText(AddProductActivity.this, "قم بملئ جميع البيانات", Toast.LENGTH_SHORT).show();
                 }
@@ -79,30 +81,20 @@ public class AddProductActivity extends AppCompatActivity {
                     RequestBody name;
                     name = RequestBody.create(MediaType.parse("text/plain"), nameStr);
 
-
                     RequestBody price;
                     price = RequestBody.create(MediaType.parse("text/plain"), priceStr);
 
                     RequestBody quantity;
                     quantity = RequestBody.create(MediaType.parse("text/plain"), QntStr);
 
-
-                    //Toast.makeText(AddProductActivity.this, ""+realImgPath, Toast.LENGTH_SHORT).show();
-
-
-                        File imgFile = new File(realImgPath);
-                        RequestBody imgReqFile = RequestBody.create(MediaType.parse("image/*"), imgFile);
-                        file = MultipartBody.Part.createFormData("photo", imgFile.getName(), imgReqFile);
-                   //     Toast.makeText(AddProductActivity.this, ""+file, Toast.LENGTH_SHORT).show();
-                   // Toast.makeText(AddProductActivity.this, ""+name, Toast.LENGTH_SHORT).show();
-
-
+                    File imgFile = new File(realImgPath);
+                    RequestBody imgReqFile = RequestBody.create(MediaType.parse("image/*"), imgFile);
+                    file = MultipartBody.Part.createFormData("photo", imgFile.getName(), imgReqFile);
 
                     RetrofitWebService.getService().addProduct(name,price,quantity,file).enqueue(new Callback<addProductResponse>() {
                         @Override
                         public void onResponse(Call<addProductResponse> call, Response<addProductResponse> response) {
                             int status = response.body().getStatus();
-                          //  Toast.makeText(AddProductActivity.this, ""+status, Toast.LENGTH_SHORT).show();
                             if(status==200)
                             {
                                 progressBar.setVisibility(View.INVISIBLE);
@@ -114,18 +106,12 @@ public class AddProductActivity extends AppCompatActivity {
                                 finish();
                             }
                         }
-
                         @Override
                         public void onFailure(Call<addProductResponse> call, Throwable t) {
 
                         }
                     });
-
-
-
                 }
-
-
             }
         });
 
