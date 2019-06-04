@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:background="#eee">
+    android:background="@color/white">
 
     <TextView
         android:id="@+id/productNameSale"
@@ -15,7 +15,6 @@
         android:text="إسم الصنف"
         android:textColor="@color/colorPrimaryDark"
         android:textSize="18sp"
-        android:background="#eee"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.501"
         app:layout_constraintStart_toStartOf="parent"

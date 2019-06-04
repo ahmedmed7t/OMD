@@ -4,12 +4,13 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".AddCustomerActivity">
+    tools:context=".AddCustomerActivity"
+    android:background="@color/white">
 
     <ImageView
         android:id="@+id/logo"
         android:layout_width="180dp"
-        android:layout_height="120dp"
+        android:layout_height="160dp"
         android:src="@drawable/logo1"
         android:scaleType="fitXY"
         android:layout_marginTop="20dp"

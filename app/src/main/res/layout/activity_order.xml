@@ -221,7 +221,7 @@
                 android:layout_width="568dp"
                 android:layout_height="347dp"
                 android:layout_marginTop="8dp"
-                android:background="#eee"
+                android:background="@color/white"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.0"
                 app:layout_constraintStart_toStartOf="parent"
