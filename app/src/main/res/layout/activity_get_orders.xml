@@ -43,7 +43,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:visibility="invisible"
-        android:text="NO orders Found"
+        android:text="لم يتم تسجيل أي طلبات بعد"
         android:textSize="15dp"
         android:textColor="@color/colorPrimary"
         app:layout_constraintTop_toBottomOf="@id/error_image_order"

@@ -124,6 +124,11 @@ public class DelegatesActivity extends AppCompatActivity {
                                     }
                                 });
                             }
+                            if(delegateNameList.size() == 0){
+                                error_text.setVisibility(View.VISIBLE);
+                                error_image.setVisibility(View.VISIBLE);
+                            }
+
 
                         }
                     }
