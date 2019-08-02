@@ -11,7 +11,7 @@ import retrofit2.converter.gson.GsonConverterFactory;
 
 public class RetrofitWebService {
     private static final Map<String, RetrofitService> mServices = new HashMap<>();
-    private static final String url = "http://iomd.info/public/api/";
+    private static final String url = "http://api.omdvet.com/public/api/";
 
     private RetrofitWebService() {
         HttpLoggingInterceptor interceptor = new HttpLoggingInterceptor();
